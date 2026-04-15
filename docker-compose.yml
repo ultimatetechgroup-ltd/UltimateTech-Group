@@ -1,0 +1,76 @@
+# UltimateTech Group – Container Orchestration Placeholder
+# This file serves as a template for future microservices and security tooling.
+# Currently, no production services are exposed publicly via this compose file.
+# For internal deployment, this will define the Zero‑Trust service mesh.
+
+version: '3.9'
+
+services:
+
+  # ----------------------------------------------
+  #  EXAMPLE SERVICE – WebTrader API (Placeholder)
+  # ----------------------------------------------
+  # webtrader-api:
+  #   build:
+  #     context: ./src/webtrader
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "443:443"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - DB_HOST=${DB_HOST}
+  #   secrets:
+  #     - webtrader_db_password
+  #   networks:
+  #     - ultimate_backend
+  #   deploy:
+  #     replicas: 3
+  #     restart_policy:
+  #       condition: any
+  #     resources:
+  #       limits:
+  #         cpus: '2'
+  #         memory: 4G
+
+  # ----------------------------------------------
+  #  SECURITY TOOLING – Markdown Lint (CI/CD)
+  # ----------------------------------------------
+  markdown-lint:
+    image: ghcr.io/igorshubovych/markdownlint-cli:latest
+    profiles: ["tools", "ci"]
+    working_dir: /workdir
+    volumes:
+      - ./:/workdir
+    command: ["--config", ".markdownlint.json", "**/*.md", "--ignore", "node_modules", "--ignore", "CHANGELOG.md"]
+
+  # ----------------------------------------------
+  #  FUTURE – XT‑Series Hardware Emulator (Private)
+  # ----------------------------------------------
+  # xt-terminal-emulator:
+  #   build: ./hardware/xt-emulator
+  #   profiles: ["hardware-test"]
+  #   devices:
+  #     - "/dev/ttyUSB0:/dev/ttyUSB0"
+  #   privileged: true
+
+# ----------------------------------------------
+# NETWORKS
+# ----------------------------------------------
+networks:
+  ultimate_backend:
+    driver: bridge
+    internal: true  # Prevents external access except via reverse proxy
+
+# ----------------------------------------------
+# SECRETS (Example – DO NOT COMMIT REAL VALUES)
+# ----------------------------------------------
+secrets:
+  webtrader_db_password:
+    file: ./secrets/db_password.txt  # Ensure this is in .gitignore
+
+# ----------------------------------------------
+# VOLUMES
+# ----------------------------------------------
+volumes:
+  postgres_data:
+  redis_data:

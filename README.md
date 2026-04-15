@@ -79,7 +79,7 @@ As a private, family‑led enterprise, UltimateTech Group Ltd is governed by an 
 |------------|---------|
 | Technical & Client Support | [247assist-ultimatetech](mailto:247assist@ultimatetechgroup.site) |
 | Institutional Inquiries | [ultimatetech-fastconnect](mailto:fastconnect@ultimatetechgroup.site) |
-| General Information | [get info-ultimatetech](mailto:info@ultimatetechgroup.site) |
+| General Information | [get infos-ultimatetech](mailto:info@ultimatetechgroup.site) |
 
 ### 💬 Direct WhatsApp (Leadership)
 
